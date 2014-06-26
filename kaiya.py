@@ -81,17 +81,13 @@ while True:
 	data = irc.recv(4096)
 	print data
 
-
 	# Keep alive
 	if data.find("PING") != -1:
 		irc.send("PONG " + data.split()[1] + "\r\n")
 
 	# Search
 	if data.find(":!search") != -1:
-		if data.find(nickname + " :!search") != -1:
-			private = True
-		else:
-			private = False
+		private = True
 
 		terms = getSearchTerms(data)
 
@@ -114,7 +110,6 @@ while True:
 				for request in results['content']:
 					sendMessage(request['content_name'] + " : " + request['content_url'], getNick(data), private)
 
-
 	# About the bot
 	if data.find(":!about") != -1:
 		if data.find(nickname + " :!about") != -1:
@@ -123,7 +118,6 @@ while True:
 			private = False
 		sendMessage("My name is "+nickname+". You can use me to find things on Fakku for you. I was created by Kisuka.", getNick(data), private)
 
-
 	# Help
 	if data.find(":!help") != -1:
 		if data.find(nickname + " :!help") != -1:
@@ -131,12 +125,3 @@ while True:
 		else:
 			private = False
 		sendMessage("Try using the !search <terms> command bakka.", getNick(data), private)
-
-
-	# Random Responses
-	if data.find("hate you Kaiya") != -1:
-		if data.find(nickname + " :!about") != -1:
-			private = True
-		else:
-			private = False
-		sendMessage("It's not like I like you either "+getNick(data)+", you sukebei!", getNick(data), private)
