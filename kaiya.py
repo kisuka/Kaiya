@@ -18,10 +18,12 @@ irc.connect((network, port))
 
 # Sending messages in channel
 def sendMessage(msg, user, private):
+	msg = msg.encode('utf-8')
+
 	if(private == True):
-		irc.send("PRIVMSG " + user + " :" + str(msg) + "\r\n")
+		irc.send("PRIVMSG " + user + " :" + msg + "\r\n")
 	else:
-		irc.send("PRIVMSG " + channel + " :" + str(msg) + "\r\n")
+		irc.send("PRIVMSG " + channel + " :" + msg + "\r\n")
 
 # Extract Nickname
 def getNick(data):
