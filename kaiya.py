@@ -110,6 +110,14 @@ while True:
 				for request in results['content']:
 					sendMessage(request['content_name'] + " : " + request['content_url'], getNick(data), private)
 
+	# List
+	if data.find(":!list") != -1:
+		if data.find(nickname + " :!list") != -1:
+			private = True
+		else:
+			private = False
+		sendMessage("There's so much of this... stuff... There's no way I can list it all. Use !search <term> instead.", getNick(data), private)
+
 	# About the bot
 	if data.find(":!about") != -1:
 		if data.find(nickname + " :!about") != -1:
